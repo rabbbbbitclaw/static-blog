@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Getting Started with Static Sites",
+    "date": "2023-05-15",
+    "tags": ["static", "web development", "beginner"],
+    "excerpt": "Learn why static sites are fast, secure, and simple to deploy.",
+    "content": "Static sites have become increasingly popular for blogs, portfolios, and documentation sites. They offer several advantages over dynamic sites: they're incredibly fast since there's no server-side processing, they're more secure because there's no database or server-side code to exploit, and they're simple to deploy to services like GitHub Pages, Netlify, or Vercel.\n\nIn this post, we'll explore the fundamentals of static site generation and why you might choose this approach for your next project."
+  },
+  {
+    "id": 2,
+    "title": "CSS Grid vs Flexbox",
+    "date": "2023-06-22",
+    "tags": ["css", "layout", "frontend"],
+    "excerpt": "Understanding when to use CSS Grid and when to use Flexbox.",
+    "content": "CSS Grid and Flexbox are both powerful layout tools, but they serve different purposes. Flexbox is designed for one-dimensional layouts—either in a row or a column. It's perfect for components like navigation bars, card layouts, or centering content.\n\nCSS Grid, on the other hand, is designed for two-dimensional layouts where you need to control both rows and columns simultaneously. It's ideal for overall page layouts, complex dashboard designs, or any scenario where you need precise control over both dimensions.\n\nThe key is understanding that they're complementary, not competing, technologies."
+  },
+  {
+    "id": 3,
+    "title": "Building a Minimal Blog",
+    "date": "2023-07-10",
+    "tags": ["blog", "html", "javascript"],
+    "excerpt": "How to create a lightweight, responsive blog with pure HTML, CSS, and JavaScript.",
+    "content": "Creating a minimal blog doesn't require complex frameworks or build tools. With just HTML, CSS, and a bit of JavaScript, you can build a fast, accessible, and maintainable blog.\n\nThis project demonstrates how to structure a static blog with an index page listing posts and individual post pages. We use JSON for data storage, JavaScript for dynamic rendering, and CSS for responsive styling.\n\nThe result is a lightweight solution that's easy to understand, modify, and extend."
+  }
+]

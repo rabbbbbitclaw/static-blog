@@ -1,0 +1,254 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header styles */
+.site-header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.site-header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.site-header nav a:hover {
+    background-color: #34495e;
+}
+
+/* Main content */
+main {
+    padding: 2rem 0;
+}
+
+/* Search section */
+.search-section {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#search-input {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    width: 250px;
+    max-width: 100%;
+}
+
+#search-button {
+    padding: 0.75rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+#search-button:hover {
+    background-color: #2980b9;
+}
+
+/* Posts grid */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.post-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+.post-card h2 {
+    margin: 0;
+    padding: 1rem;
+    font-size: 1.25rem;
+    color: #2c3e50;
+}
+
+.post-card .post-meta {
+    padding: 0 1rem 0.5rem;
+    font-size: 0.85rem;
+    color: #7f8c8d;
+}
+
+.post-card .post-excerpt {
+    padding: 0 1rem 1rem;
+    color: #555;
+}
+
+.post-card .read-more {
+    display: block;
+    padding: 0.5rem 1rem;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.post-card .read-more:hover {
+    background-color: #2980b9;
+}
+
+/* Post detail page */
+.post-detail {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.post-detail h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.post-meta {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.post-meta span {
+    margin-right: 1rem;
+}
+
+#post-content {
+    margin-bottom: 2rem;
+}
+
+#post-content p {
+    margin-bottom: 1rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.site-footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
+
+.site-footer .container {
+    text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .site-header .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    #search-input, #search-button {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    #search-input {
+        border-radius: 4px;
+        width: 100%;
+    }
+    
+    #search-button {
+        border-radius: 4px;
+        width: 100%;
+    }
+    
+    .post-meta span {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 0.25rem;
+    }
+}
+
+/* No results message */
+.no-results {
+    text-align: center;
+    padding: 2rem;
+    color: #7f8c8d;
+}
+
+/* Utility classes */
+.hidden {
+    display: none;
+}
+
+/* Loading state */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #7f8c8d;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

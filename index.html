@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Blog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>Minimal Blog</h1>
+            <nav>
+                <a href="index.html">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="search-section">
+            <input type="text" id="search-input" placeholder="Search posts by title or tag...">
+            <button id="search-button">Search</button>
+        </div>
+
+        <div id="posts-container" class="posts-grid">
+            <!-- Posts will be loaded here by JavaScript -->
+        </div>
+
+        <div id="no-results" class="no-results" style="display: none;">
+            <p>No posts found matching your search.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2023 Minimal Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
