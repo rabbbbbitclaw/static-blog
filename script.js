@@ -73,6 +73,7 @@ function renderPostsList(posts) {
 
     const postsHTML = sortedPosts.map(post => `
         <div class="post-card">
+            ${post.cover ? `<img src="${escapeHtml(post.cover)}" alt="${escapeHtml(post.title)}" class="post-cover">` : ''}
             <h2>${escapeHtml(post.title)}</h2>
             <div class="post-meta">
                 <span>${formatDate(post.date)}</span>
@@ -92,6 +93,16 @@ function renderPostDetail(post) {
     document.getElementById('post-title').textContent = escapeHtml(post.title);
     document.getElementById('post-date').textContent = `发布时间：${formatDate(post.date)}`;
     document.getElementById('post-tags').textContent = post.tags ? `标签：${post.tags.join('、')}` : '';
+
+    // Set cover image if exists
+    const coverImg = document.getElementById('post-cover');
+    if (post.cover && post.cover.trim() !== '') {
+        coverImg.src = escapeHtml(post.cover);
+        coverImg.alt = escapeHtml(post.title);
+        coverImg.style.display = 'block';
+    } else {
+        coverImg.style.display = 'none';
+    }
 
     const content = post.content
         .split('\n\n')
