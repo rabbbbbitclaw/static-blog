@@ -7,7 +7,8 @@ A lightweight, responsive static blog built with pure HTML, CSS, and JavaScript.
 - Pure static site (HTML/CSS/JS only)
 - Index page listing all posts
 - Post detail page (`post.html?id=<id>`)
-- 3 sample posts in `data/posts.json`
+- Personal homepage (`about.html`)
+- Diary page (`diary.html`) with entries from `data/diary.json`
 - Responsive layout
 - Search by title or tag
 
@@ -15,9 +16,12 @@ A lightweight, responsive static blog built with pure HTML, CSS, and JavaScript.
 
 - `index.html` – post list + search
 - `post.html` – post detail template
+- `about.html` – personal homepage
+- `diary.html` – diary list page
 - `style.css` – styles
-- `script.js` – data loading, rendering, search logic
-- `data/posts.json` – sample data
+- `script.js` – data loading & rendering logic
+- `data/posts.json` – article data
+- `data/diary.json` – diary data
 
 ## Run locally
 

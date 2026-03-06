@@ -1,4 +1,4 @@
-// 加载文章数据并渲染页面
+// 加载页面数据并渲染
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop();
 
@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
         loadIndexPage();
     } else if (currentPage === 'post.html') {
         loadPostPage();
+    } else if (currentPage === 'diary.html') {
+        loadDiaryPage();
     }
 });
 
@@ -61,6 +63,22 @@ function loadPostPage() {
         });
 }
 
+function loadDiaryPage() {
+    fetch('data/diary.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP 错误: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(entries => renderDiaryList(entries))
+        .catch(error => {
+            console.error('加载日记失败:', error);
+            const container = document.getElementById('diary-container');
+            container.innerHTML = '<div class="error-message"><p>日记加载失败，请检查 data/diary.json 是否存在。</p></div>';
+        });
+}
+
 function renderPostsList(posts) {
     const container = document.getElementById('posts-container');
 
@@ -89,12 +107,41 @@ function renderPostsList(posts) {
     container.innerHTML = postsHTML;
 }
 
+function renderDiaryList(entries) {
+    const container = document.getElementById('diary-container');
+    const emptyHint = document.getElementById('diary-empty');
+
+    if (!entries || entries.length === 0) {
+        container.innerHTML = '';
+        emptyHint.style.display = 'block';
+        return;
+    }
+
+    emptyHint.style.display = 'none';
+
+    const sortedEntries = [...entries].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    container.innerHTML = sortedEntries.map(entry => {
+        const content = escapeHtml(entry.content).replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+
+        return `
+            <article class="diary-card">
+                <div class="diary-meta">
+                    <span>${formatDate(entry.date)}</span>
+                    <span>心情：${escapeHtml(entry.mood || '平静')}</span>
+                </div>
+                <h3>${escapeHtml(entry.title)}</h3>
+                <div class="diary-content"><p>${content}</p></div>
+            </article>
+        `;
+    }).join('');
+}
+
 function renderPostDetail(post) {
     document.getElementById('post-title').textContent = escapeHtml(post.title);
     document.getElementById('post-date').textContent = `发布时间：${formatDate(post.date)}`;
     document.getElementById('post-tags').textContent = post.tags ? `标签：${post.tags.join('、')}` : '';
 
-    // Set cover image if exists
     const coverImg = document.getElementById('post-cover');
     if (post.cover && post.cover.trim() !== '') {
         coverImg.src = escapeHtml(post.cover);
