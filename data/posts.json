@@ -1,26 +1,26 @@
 [
   {
     "id": 1,
-    "title": "Getting Started with Static Sites",
-    "date": "2023-05-15",
-    "tags": ["static", "web development", "beginner"],
-    "excerpt": "Learn why static sites are fast, secure, and simple to deploy.",
-    "content": "Static sites have become increasingly popular for blogs, portfolios, and documentation sites. They offer several advantages over dynamic sites: they're incredibly fast since there's no server-side processing, they're more secure because there's no database or server-side code to exploit, and they're simple to deploy to services like GitHub Pages, Netlify, or Vercel.\n\nIn this post, we'll explore the fundamentals of static site generation and why you might choose this approach for your next project."
+    "title": "为什么我选择静态博客",
+    "date": "2026-03-01",
+    "tags": ["静态站点", "建站", "入门"],
+    "excerpt": "速度快、部署简单、维护成本低，是我选择静态博客的三个核心原因。",
+    "content": "如果只是写博客或做作品展示，静态站点通常是性价比最高的方案。它不依赖数据库，也不需要后端服务，天然更稳定、攻击面更小。\n\n对个人开发者来说，最爽的是发布链路简单：改完代码直接推到 GitHub，就能自动更新页面。你不需要维护服务器，不需要担心环境漂移。\n\n所以我的建议是：先用静态博客快速起步，等需求复杂了再考虑动态化。"
   },
   {
     "id": 2,
-    "title": "CSS Grid vs Flexbox",
-    "date": "2023-06-22",
-    "tags": ["css", "layout", "frontend"],
-    "excerpt": "Understanding when to use CSS Grid and when to use Flexbox.",
-    "content": "CSS Grid and Flexbox are both powerful layout tools, but they serve different purposes. Flexbox is designed for one-dimensional layouts—either in a row or a column. It's perfect for components like navigation bars, card layouts, or centering content.\n\nCSS Grid, on the other hand, is designed for two-dimensional layouts where you need to control both rows and columns simultaneously. It's ideal for overall page layouts, complex dashboard designs, or any scenario where you need precise control over both dimensions.\n\nThe key is understanding that they're complementary, not competing, technologies."
+    "title": "用 CSS 做出干净好看的排版",
+    "date": "2026-03-03",
+    "tags": ["CSS", "排版", "前端"],
+    "excerpt": "排版不靠花哨，靠层次：字号、行高、留白和对比。",
+    "content": "很多博客页面看起来乱，主要是层次没有拉开。标题、正文、元信息挤在一起，读起来很累。\n\n想做出舒服的阅读体验，先抓四个点：第一，正文行高至少 1.6；第二，标题和段落间距要明显；第三，颜色对比够但别刺眼；第四，移动端优先适配。\n\n做到这些，哪怕没有复杂设计，页面也会显得专业。"
   },
   {
     "id": 3,
-    "title": "Building a Minimal Blog",
-    "date": "2023-07-10",
-    "tags": ["blog", "html", "javascript"],
-    "excerpt": "How to create a lightweight, responsive blog with pure HTML, CSS, and JavaScript.",
-    "content": "Creating a minimal blog doesn't require complex frameworks or build tools. With just HTML, CSS, and a bit of JavaScript, you can build a fast, accessible, and maintainable blog.\n\nThis project demonstrates how to structure a static blog with an index page listing posts and individual post pages. We use JSON for data storage, JavaScript for dynamic rendering, and CSS for responsive styling.\n\nThe result is a lightweight solution that's easy to understand, modify, and extend."
+    "title": "从零部署到 GitHub Pages",
+    "date": "2026-03-06",
+    "tags": ["GitHub Pages", "部署", "教程"],
+    "excerpt": "把本地项目发布到公网，最快只要几分钟。",
+    "content": "部署静态博客到 GitHub Pages 的流程很短：创建仓库、推送代码、打开 Pages。\n\n在仓库设置里选择分支和目录后，GitHub 会自动构建并发布。通常 1 到 3 分钟就能访问到公开链接。\n\n如果你后续有域名，还可以绑定自定义域名，并开启 HTTPS。这样一个完整可用的博客就上线了。"
   }
 ]

@@ -1,8 +1,7 @@
-// Load posts data and render pages
+// 加载文章数据并渲染页面
 document.addEventListener('DOMContentLoaded', function() {
-    // Get current page type
     const currentPage = window.location.pathname.split('/').pop();
-    
+
     if (currentPage === 'index.html' || currentPage === '') {
         loadIndexPage();
     } else if (currentPage === 'post.html') {
@@ -11,11 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function loadIndexPage() {
-    // Load posts from data/posts.json
     fetch('data/posts.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP 错误: ${response.status}`);
             }
             return response.json();
         })
@@ -24,28 +22,26 @@ function loadIndexPage() {
             setupSearch(posts);
         })
         .catch(error => {
-            console.error('Error loading posts:', error);
-            document.getElementById('posts-container').innerHTML = 
-                '<div class="error-message"><p>Error loading posts. Please check if data/posts.json exists.</p></div>';
+            console.error('加载文章失败:', error);
+            document.getElementById('posts-container').innerHTML =
+                '<div class="error-message"><p>文章加载失败，请检查 data/posts.json 是否存在。</p></div>';
         });
 }
 
 function loadPostPage() {
-    // Get post ID from URL query parameter
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
-    
+
     if (!postId) {
-        document.getElementById('post-title').textContent = 'Post Not Found';
-        document.getElementById('post-content').innerHTML = '<p>Invalid post ID.</p>';
+        document.getElementById('post-title').textContent = '文章不存在';
+        document.getElementById('post-content').innerHTML = '<p>无效的文章 ID。</p>';
         return;
     }
-    
-    // Load posts data
+
     fetch('data/posts.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP 错误: ${response.status}`);
             }
             return response.json();
         })
@@ -54,57 +50,54 @@ function loadPostPage() {
             if (post) {
                 renderPostDetail(post);
             } else {
-                document.getElementById('post-title').textContent = 'Post Not Found';
-                document.getElementById('post-content').innerHTML = '<p>Post not found.</p>';
+                document.getElementById('post-title').textContent = '文章不存在';
+                document.getElementById('post-content').innerHTML = '<p>未找到该文章。</p>';
             }
         })
         .catch(error => {
-            console.error('Error loading post:', error);
-            document.getElementById('post-title').textContent = 'Error Loading Post';
-            document.getElementById('post-content').innerHTML = '<p>Error loading post data.</p>';
+            console.error('加载文章失败:', error);
+            document.getElementById('post-title').textContent = '加载失败';
+            document.getElementById('post-content').innerHTML = '<p>文章数据加载失败。</p>';
         });
 }
 
 function renderPostsList(posts) {
     const container = document.getElementById('posts-container');
-    const noResults = document.getElementById('no-results');
-    
+
     if (posts.length === 0) {
-        container.innerHTML = '<p>No posts available.</p>';
+        container.innerHTML = '<p>暂无文章。</p>';
         return;
     }
-    
-    // Sort posts by date (newest first)
+
     const sortedPosts = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
-    
+
     const postsHTML = sortedPosts.map(post => `
         <div class="post-card">
             <h2>${escapeHtml(post.title)}</h2>
             <div class="post-meta">
                 <span>${formatDate(post.date)}</span>
-                <span>${post.tags ? `Tags: ${post.tags.join(', ')}` : ''}</span>
+                <span>${post.tags ? `标签：${post.tags.join('、')}` : ''}</span>
             </div>
             <div class="post-excerpt">
                 <p>${escapeHtml(post.excerpt)}</p>
             </div>
-            <a href="post.html?id=${post.id}" class="read-more">Read more</a>
+            <a href="post.html?id=${post.id}" class="read-more">阅读全文</a>
         </div>
     `).join('');
-    
+
     container.innerHTML = postsHTML;
 }
 
 function renderPostDetail(post) {
     document.getElementById('post-title').textContent = escapeHtml(post.title);
-    document.getElementById('post-date').textContent = `Published: ${formatDate(post.date)}`;
-    document.getElementById('post-tags').textContent = post.tags ? `Tags: ${post.tags.join(', ')}` : '';
-    
-    // Convert markdown-like line breaks to HTML paragraphs
+    document.getElementById('post-date').textContent = `发布时间：${formatDate(post.date)}`;
+    document.getElementById('post-tags').textContent = post.tags ? `标签：${post.tags.join('、')}` : '';
+
     const content = post.content
         .split('\n\n')
         .map(paragraph => `<p>${escapeHtml(paragraph)}</p>`)
         .join('');
-    
+
     document.getElementById('post-content').innerHTML = content;
 }
 
@@ -113,25 +106,22 @@ function setupSearch(posts) {
     const searchButton = document.getElementById('search-button');
     const postsContainer = document.getElementById('posts-container');
     const noResults = document.getElementById('no-results');
-    
+
     function performSearch() {
         const searchTerm = searchInput.value.trim().toLowerCase();
-        
+
         if (!searchTerm) {
-            // Show all posts if search is empty
             renderPostsList(posts);
             noResults.style.display = 'none';
             return;
         }
-        
+
         const filteredPosts = posts.filter(post => {
             const titleMatch = post.title.toLowerCase().includes(searchTerm);
-            const tagMatch = post.tags && post.tags.some(tag => 
-                tag.toLowerCase().includes(searchTerm)
-            );
+            const tagMatch = post.tags && post.tags.some(tag => tag.toLowerCase().includes(searchTerm));
             return titleMatch || tagMatch;
         });
-        
+
         if (filteredPosts.length > 0) {
             renderPostsList(filteredPosts);
             noResults.style.display = 'none';
@@ -140,10 +130,8 @@ function setupSearch(posts) {
             noResults.style.display = 'block';
         }
     }
-    
+
     searchButton.addEventListener('click', performSearch);
-    
-    // Also search on Enter key
     searchInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             performSearch();
@@ -152,8 +140,8 @@ function setupSearch(posts) {
 }
 
 function formatDate(dateString) {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('zh-CN', options);
 }
 
 function escapeHtml(text) {
